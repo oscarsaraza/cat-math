@@ -1,0 +1,14 @@
+- Nombre: "Multiplicación gatuna"
+- Botón de reiniciar y ocultar formalario al finzalizar.
+- Gato de felicitaciones
+- Medir tiempo de respuestas
+- Confeti al finalizar
+- Botón para responder pregunta
+- 10 respuestas correctas: mostrar gato de "sigue así"
+- Agregar sonido de respuesta incorrecta
+- Pantalla de inicio antes de iniciar el juego.
+  - Mostrar instrucciones del juego
+  - Dibujo de gato pensando en multiplicaciones
+  - Botón "Jugar"
+- Modificar diseño.
+  - Paleta de colores, tipografía
