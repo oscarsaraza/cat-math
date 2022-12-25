@@ -1,14 +1,22 @@
-- Nombre: "Multiplicación gatuna"
-- Botón de reiniciar y ocultar formalario al finzalizar.
-- Gato de felicitaciones
-- Medir tiempo de respuestas
-- Confeti al finalizar
-- Botón para responder pregunta
-- 10 respuestas correctas: mostrar gato de "sigue así"
-- Agregar sonido de respuesta incorrecta
-- Pantalla de inicio antes de iniciar el juego.
-  - Mostrar instrucciones del juego
-  - Dibujo de gato pensando en multiplicaciones
-  - Botón "Jugar"
-- Modificar diseño.
-  - Paleta de colores, tipografía
+- Name app: "CAT MATH"
+
+- Show a "congratulations" cat and conffeti on finish.
+  - Hide operations.
+- Measure answers time
+- Add sounds
+  - Correct answer
+  - Incorrect answer
+- Start screen
+  - Cat thinking on math
+  - "Start" button
+- Design graphics
+  - Color palette
+  - Typography
+- 10 correct answers: show "keep going"
+- User accounts system
+  - Generate random user name and assign a numeric password
+  - Save practice data
+    - date
+    - completed
+    - total time
+  - Remove unused accounts after 10 days of inactivity

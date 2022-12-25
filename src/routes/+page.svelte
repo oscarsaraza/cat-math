@@ -1,53 +1,48 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { onMount } from 'svelte';
+	import Keyboard from './keyboard.svelte';
+
+	type Operation = { n1: number; n2: number; text: string };
 
 	export let data: PageData;
-	let operations;
-	let operation;
+	let operations: Array<Operation>;
+	let operation: Operation | null;
 	let answer = '';
-	let answerInput;
-	let finished;
+	let finished: boolean;
 
 	onMount(() => {
 		operations = data.operations;
 		loadOperation();
-		answerInput.focus();
 	});
 
 	function loadOperation() {
 		if (operations.length) {
-			operation = operations.pop();
+			operation = operations.pop() || null;
 			operations = operations; // Force reactivity
 		} else {
 			finished = operations.length === 0;
-			operation = '';
+			operation = null;
 		}
 	}
 
-	function keyDown(event) {
-		const { code } = event;
-		if (code === 'Enter') {
-			event.preventDefault();
-			const { n1, n2 } = operation;
-			console.log(+answer, operation);
-			if (+answer === n1 * n2) {
-				loadOperation();
-				// console.log("ok")
-			} else {
-				// console.log("wrong")
-			}
-			answer = '';
+	function onOk() {
+		if (!operation) return;
+		const { n1, n2 } = operation;
+		if (+answer === n1 * n2) {
+			// Correct answer
+			loadOperation();
+		} else {
+			// Wrong answer
 		}
+		answer = '';
 	}
 </script>
 
 <div class="main-container">
 	<div class="card">
-		<span class="operation">{operation?.text || ''}</span>
-		<form action="">
-			<input type="text" bind:value={answer} on:keydown={keyDown} bind:this={answerInput} />
-		</form>
+		<span class="operation">{operation?.text || ''} {answer}</span>
+		<Keyboard bind:value={answer} on:okClick={onOk} />
 	</div>
 	{#if finished}
 		<div>Finalizado!!!</div>
@@ -78,16 +73,5 @@
 	.card > .operation {
 		width: 100%;
 		font-size: 2em;
-	}
-	.card > form {
-		display: inline;
-	}
-	form > input {
-		width: 2em;
-		text-align: center;
-		font-size: 2em;
-		border: none;
-		background: none;
-		box-shadow: 1px 1px 4px #333;
 	}
 </style>

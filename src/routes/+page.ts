@@ -3,7 +3,7 @@ import type { PageLoad } from './$types';
 
 export const csr = true;
 
-export const load = (({ params }) => {
+export const load: PageLoad = ({ params }) => {
 	const numbers = [2, 3, 4, 5, 6, 7, 8, 9];
 
 	return {
@@ -13,4 +13,4 @@ export const load = (({ params }) => {
 			.sort((a, b) => a.order - b.order)
 			.map(({ item }) => item)
 	};
-}) satisfies PageLoad;
+};
