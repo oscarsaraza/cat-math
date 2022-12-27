@@ -8,6 +8,7 @@
 	let operation: typeof data.operations[0] | null;
 	let answer = '';
 	let finished: boolean;
+	$: operationsLeft = (operations?.length || 0) + 1;
 
 	onMount(() => {
 		operations = data.operations;
@@ -16,7 +17,9 @@
 
 	function loadOperation() {
 		if (operations.length) {
-			operation = operations.pop() || null;
+			const [first, ...rest] = operations;
+			operation = first || null;
+			operations = rest;
 		} else {
 			finished = operations.length === 0;
 			operation = null;
@@ -54,8 +57,8 @@
 			<span>Finalizado!!!</span>
 		{:else if operations}
 			<span>
-				{#if operations.length !== 0}
-					Faltan {operations.length + 1} operaciones
+				{#if operationsLeft !== 1}
+					Faltan {operationsLeft} operaciones
 				{:else}
 					Falta 1 operación
 				{/if}
