@@ -1,7 +1,5 @@
-- Name app: "CAT MATH"
+App name: "CAT MATH"
 
-- Show a "congratulations" cat and conffeti on finish.
-  - Hide operations.
 - Measure answers time
 - Add sounds
   - Correct answer

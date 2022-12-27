@@ -3,11 +3,9 @@
 	import { onMount } from 'svelte';
 	import Keyboard from './keyboard.svelte';
 
-	type Operation = { n1: number; n2: number; text: string };
-
 	export let data: PageData;
-	let operations: Array<Operation>;
-	let operation: Operation | null;
+	let operations: typeof data.operations;
+	let operation: typeof data.operations[0] | null;
 	let answer = '';
 	let finished: boolean;
 
@@ -19,7 +17,6 @@
 	function loadOperation() {
 		if (operations.length) {
 			operation = operations.pop() || null;
-			operations = operations; // Force reactivity
 		} else {
 			finished = operations.length === 0;
 			operation = null;
@@ -41,14 +38,30 @@
 
 <div class="main-container">
 	<div class="card">
-		<span class="operation">{operation?.text || ''} {answer}</span>
+		<div class="operation">
+			{#if finished}
+				<a href="/" target="_self">
+					<button class="btn">Reiniciar</button>
+				</a>
+			{:else}
+				<span>{operation?.text || ''} {answer}</span>
+			{/if}
+		</div>
 		<Keyboard bind:value={answer} on:okClick={onOk} />
 	</div>
-	{#if finished}
-		<div>Finalizado!!!</div>
-	{:else if operations}
-		<div>Faltan {operations.length + 1} operaciones</div>
-	{/if}
+	<div class="message">
+		{#if finished}
+			<span>Finalizado!!!</span>
+		{:else if operations}
+			<span>
+				{#if operations.length !== 0}
+					Faltan {operations.length + 1} operaciones
+				{:else}
+					Falta 1 operación
+				{/if}
+			</span>
+		{/if}
+	</div>
 </div>
 
 <style>
@@ -66,12 +79,22 @@
 	.main-container > .card {
 		background: #ddd;
 		width: 15em;
-		margin: 2em auto;
+		margin: auto;
 		padding: 2em;
 		box-shadow: 1px 1px 4px #333;
 	}
 	.card > .operation {
 		width: 100%;
+		font-size: 2em;
+		height: 2em;
+	}
+	.btn {
+		width: 100%;
+		font-size: inherit;
+		border: none;
+	}
+	.message {
+		margin: 2em;
 		font-size: 2em;
 	}
 </style>

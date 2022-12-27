@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 
 	const dispatch = createEventDispatcher();
-	export let value = '';
+	export let value: string = '';
 
-	function onButtonClick(number) {
+	function onButtonClick(number: number) {
 		return () => {
 			if (value.length <= 2) value = `${value}${number}`;
 		};
@@ -39,7 +39,6 @@
 		display: flex;
 		flex-wrap: wrap;
 		font-size: 2em;
-		margin: 1em 0;
 		column-gap: 5%;
 		row-gap: 10px;
 	}
@@ -47,11 +46,5 @@
 		width: 30%;
 		font-size: 1em;
 		border: none;
-	}
-	.ok {
-		width: 66%;
-	}
-	.del {
-		width: 33%;
 	}
 </style>
