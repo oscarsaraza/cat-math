@@ -2,6 +2,7 @@
 	import type { PageData } from './$types';
 	import { onMount } from 'svelte';
 	import Keyboard from './keyboard.svelte';
+	import party from 'party-js';
 
 	export let data: PageData;
 	let operations: typeof data.operations;
@@ -32,6 +33,8 @@
 		if (+answer === n1 * n2) {
 			// Correct answer
 			loadOperation();
+			const operationDiv = document.getElementById('operation');
+			if (operationDiv) party.confetti(operationDiv, { count: 50, spread: 10 });
 		} else {
 			// Wrong answer
 		}
@@ -41,7 +44,7 @@
 
 <div class="main-container">
 	<div class="card">
-		<div class="operation">
+		<div id="operation" class="operation">
 			{#if finished}
 				<a href="/" target="_self">
 					<button class="btn">Reiniciar</button>
