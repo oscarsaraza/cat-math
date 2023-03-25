@@ -8,11 +8,7 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		adapter: adapter({
-			edge: false,
-			external: [],
-			split: false
-		})
+		adapter: adapter({ runtime: "edge" })
 	}
 };
 
