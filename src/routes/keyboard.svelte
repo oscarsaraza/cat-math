@@ -11,7 +11,7 @@
 	const onNumberClick = (number: number) => () => addNumberToAnswer(number);
 
 	const handleKeydown = ({ key }: KeyboardEvent) => {
-		const number = parseInt(key);
+		const number = parseInt(key, 10);
 		if (!Number.isNaN(number)) addNumberToAnswer(number);
 		else if (key === 'Enter') onOkButtonClick();
 		else if (key === 'Backspace') onDelButtonClick();
