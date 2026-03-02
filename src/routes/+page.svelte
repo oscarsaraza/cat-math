@@ -9,6 +9,7 @@
 	let operation: typeof data.operations[0] | null;
 	let answer = '';
 	let finished: boolean;
+	let operationDiv: HTMLElement;
 	$: operationsLeft = (operations?.length || 0) + 1;
 
 	onMount(() => {
@@ -33,7 +34,6 @@
 		if (+answer === n1 * n2) {
 			// Correct answer
 			loadOperation();
-			const operationDiv = document.getElementById('operation');
 			if (operationDiv) party.confetti(operationDiv, { count: 50, spread: 10 });
 		} else {
 			// Wrong answer
@@ -44,7 +44,7 @@
 
 <div class="main-container">
 	<div class="card">
-		<div id="operation" class="operation">
+		<div bind:this={operationDiv} id="operation" class="operation">
 			{#if finished}
 				<a href="/" target="_self">
 					<button class="btn">Reiniciar</button>
