@@ -6,7 +6,7 @@
 
 	export let data: PageData;
 	let operations: typeof data.operations;
-	let operation: typeof data.operations[0] | null;
+	let operation: (typeof data.operations)[0] | null;
 	let answer = '';
 	let finished: boolean;
 	let operationDiv: HTMLElement;
@@ -46,6 +46,7 @@
 	<div class="card">
 		<div bind:this={operationDiv} id="operation" class="operation">
 			{#if finished}
+				<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
 				<a href="/" target="_self">
 					<button class="btn">Reiniciar</button>
 				</a>
