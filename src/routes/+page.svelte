@@ -2,7 +2,6 @@
 	import type { PageData } from './$types';
 	import { onMount } from 'svelte';
 	import Keyboard from './keyboard.svelte';
-	import party from 'party-js';
 
 	export let data: PageData;
 	let operations: typeof data.operations;
@@ -28,13 +27,16 @@
 		}
 	}
 
-	function onOk() {
+	async function onOk() {
 		if (!operation) return;
 		const { n1, n2 } = operation;
 		if (+answer === n1 * n2) {
 			// Correct answer
 			loadOperation();
-			if (operationDiv) party.confetti(operationDiv, { count: 50, spread: 10 });
+			if (operationDiv) {
+				const party = (await import('party-js')).default;
+				party.confetti(operationDiv, { count: 50, spread: 10 });
+			}
 		} else {
 			// Wrong answer
 		}
