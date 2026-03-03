@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
+	import { addNumber, deleteLastChar } from './keyboard';
 
 	const dispatch = createEventDispatcher<{ okClick: null }>();
 	export let value: string = '';
 
 	function addNumberToAnswer(number: number) {
-		if (value.length <= 2) value = `${value}${number}`;
+		value = addNumber(value, number);
 	}
 
 	const onNumberClick = (number: number) => () => addNumberToAnswer(number);
@@ -22,7 +23,7 @@
 	}
 
 	function onDelButtonClick() {
-		if (value) value = value.slice(0, -1);
+		value = deleteLastChar(value);
 	}
 </script>
 
