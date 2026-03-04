@@ -47,9 +47,7 @@
 		<div bind:this={operationDiv} id="operation" class="operation">
 			{#if finished}
 				<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-				<a href="/" target="_self">
-					<button class="btn">Reiniciar</button>
-				</a>
+				<a href="/" target="_self" class="btn">Reiniciar</a>
 			{:else}
 				<span>{operation?.text || ''} {answer}</span>
 			{/if}
@@ -99,6 +97,22 @@
 		width: 100%;
 		font-size: inherit;
 		border: none;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		text-decoration: none;
+		color: inherit;
+		background-color: #efefef;
+		cursor: pointer;
+	}
+
+	.btn:hover {
+		background-color: #e5e5e5;
+	}
+
+	.btn:active {
+		background-color: #d5d5d5;
 	}
 	.message {
 		margin: 2em;
