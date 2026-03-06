@@ -92,6 +92,10 @@
 		width: 100%;
 		font-size: 2em;
 		height: 2em;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 20px;
 	}
 	.btn {
 		width: 100%;
@@ -100,7 +104,7 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		height: 100%;
+		padding: 0.5em 0;
 		text-decoration: none;
 		color: inherit;
 		background-color: #efefef;
